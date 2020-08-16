@@ -16,7 +16,7 @@ class TodoListState extends State {
   Widget build(BuildContext context) {
     if (todos == null) {
       todos = List<Todo>();
-      getData();
+      _getData();
     }
 
     return Scaffold(
@@ -35,8 +35,8 @@ class TodoListState extends State {
               elevation: 2.0,
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: Colors.red,
-                  child: Text(this.todos[position].id.toString()),
+                  backgroundColor: _getColor(this.todos[position].priority),
+                  child: Text(this.todos[position].priority.toString()),
                 ),
                 title: Text(this.todos[position].title),
                 subtitle: Text(this.todos[position].date),
@@ -47,7 +47,23 @@ class TodoListState extends State {
         });
   }
 
-  void getData() {
+  Color _getColor(int priority) {
+    switch (priority) {
+      case 1:
+        return Colors.red;
+        break;
+      case 2:
+        return Colors.orange;
+        break;
+      case 3:
+        return Colors.green;
+        break;
+      default:
+        return Colors.green;
+    }
+  }
+
+  void _getData() {
     helper.initializeDb().then((value) {
       helper.getTodos().then((value) {
         _setTodoListState(value);
