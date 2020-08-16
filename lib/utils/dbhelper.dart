@@ -37,12 +37,14 @@ class DbHelper {
         "$colTitle TEXT," +
         "$colDescription TEXT," +
         "$colDate TEXT," +
-        "$colPriority INTEGER,");
+        "$colPriority INTEGER)");
   }
 
   Future<int> insertTodo(Todo todo) async {
     Database db = await this.db;
     var result = await db.insert(tableTodo, todo.toMap());
+    print("Result #####");
+    print(result);
     return result;
   }
 
