@@ -1,4 +1,4 @@
-const PRIORITIES = ["Medium", "High", "Low"];
+const PRIORITIES = ["High", "Medium", "Low"];
 const List<String> ACTIONS_CHOICES = const <String>[
   "Save Todo & Back",
   "Delete Todo",
